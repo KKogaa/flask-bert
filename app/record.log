@@ -1,0 +1,39 @@
+2021-10-04 19:30:34,892 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:30:35,524 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "GET /api/models/dccuchile/bert-base-spanish-wwm-cased HTTP/1.1" 200 986
+2021-10-04 19:30:35,530 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:30:35,986 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-10-04 19:30:35,991 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:30:36,430 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/tokenizer.json HTTP/1.1" 200 0
+2021-10-04 19:30:36,433 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:30:36,888 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2021-10-04 19:30:36,892 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:30:37,362 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/special_tokens_map.json HTTP/1.1" 200 0
+2021-10-04 19:30:37,377 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:30:37,846 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2021-10-04 19:30:37,851 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:30:38,291 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/config.json HTTP/1.1" 200 0
+2021-10-04 19:30:57,314 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:30:57,765 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/config.json HTTP/1.1" 200 0
+2021-10-04 19:30:57,771 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:30:58,218 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-10-04 19:32:57,810 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:32:58,474 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "GET /api/models/dccuchile/bert-base-spanish-wwm-cased HTTP/1.1" 200 986
+2021-10-04 19:32:58,480 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:32:58,915 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/vocab.txt HTTP/1.1" 200 0
+2021-10-04 19:32:58,919 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:32:59,358 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/tokenizer.json HTTP/1.1" 200 0
+2021-10-04 19:32:59,362 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:32:59,796 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2021-10-04 19:32:59,799 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:33:00,235 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/special_tokens_map.json HTTP/1.1" 200 0
+2021-10-04 19:33:00,239 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:33:00,675 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2021-10-04 19:33:00,680 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:33:01,156 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/config.json HTTP/1.1" 200 0
+2021-10-04 19:33:18,852 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:33:19,310 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/config.json HTTP/1.1" 200 0
+2021-10-04 19:33:19,323 DEBUG urllib3.connectionpool MainThread : Starting new HTTPS connection (1): huggingface.co:443
+2021-10-04 19:33:19,912 DEBUG urllib3.connectionpool MainThread : https://huggingface.co:443 "HEAD /dccuchile/bert-base-spanish-wwm-cased/resolve/main/pytorch_model.bin HTTP/1.1" 302 0
+2021-10-04 19:56:54,573 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-10-04 19:57:10,141 INFO werkzeug Thread-1 : 127.0.0.1 - - [04/Oct/2021 19:57:10] "[37mPOST /categorizar HTTP/1.1[0m" 200 -
+2021-10-04 19:57:23,781 INFO werkzeug Thread-2 : 127.0.0.1 - - [04/Oct/2021 19:57:23] "[37mPOST /categorizar HTTP/1.1[0m" 200 -
