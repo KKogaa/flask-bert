@@ -4,7 +4,7 @@ import pytorch_lightning as pl
 from transformers import BertTokenizerFast as BertTokenizer, BertModel, AdamW, get_linear_schedule_with_warmup
 
 
-class ToxicCommentTagger(pl.LightningModule):
+class IntentTagger(pl.LightningModule):
 
     def __init__(self, n_classes: int, n_training_steps=None, n_warmup_steps=None):
         super().__init__()
