@@ -1,3 +1,15 @@
+FROM ubuntu:20.04
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y python3 
+RUN apt-get install -y python3-pip
+RUN apt-get install -y libmysqlclient-dev
+ADD app/ /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+
+
+
 # FROM nvidia/cuda:11.1.1-base-ubuntu20.04
 
 # # Install some basic utilities
@@ -88,33 +100,33 @@
 # ENTRYPOINT [ "flask"]
 # CMD [ "run", "--host", "0.0.0.0" ]
 
-FROM python:3.7-slim
-ADD app/ /app
-WORKDIR /app
+# FROM python:3.7-slim
+# ADD app/ /app
+# WORKDIR /app
+# # RUN pip3 install flask
+# # RUN pip3 install flask-restx
+
+# RUN apt-get update
+# RUN pip install --upgrade pip setuptools
+# # RUN apt-get -y install default-libmysqlclient-dev
+# RUN apt-get -y install default-libmysqlclient-dev
+# RUN apt-get -y install python3-pymysql
+# RUN apt-get -y install libssl-dev
+# RUN pip install mysql-connector
+# # RUN apt-get -y install mysql-server
+# # RUN pip3 install -r requirements.txt
+# # RUN pip3 install torch
+# RUN pip3 install torch --no-cache-dir 
+# RUN pip3 install pytorch-lightning --no-cache-dir
+# RUN pip3 install transformers
+# RUN pip3 install SQLAlchemy
 # RUN pip3 install flask
 # RUN pip3 install flask-restx
+# RUN pip3 install py-eureka-client
 
-RUN apt-get update
-RUN pip install --upgrade pip setuptools
-# RUN apt-get -y install default-libmysqlclient-dev
-RUN apt-get -y install default-libmysqlclient-dev
-RUN apt-get -y install python3-pymysql
-RUN apt-get -y install libssl-dev
-RUN pip install mysql-connector
-# RUN apt-get -y install mysql-server
-# RUN pip3 install -r requirements.txt
-# RUN pip3 install torch
-RUN pip3 install torch --no-cache-dir 
-RUN pip3 install pytorch-lightning --no-cache-dir
-RUN pip3 install transformers
-RUN pip3 install SQLAlchemy
-RUN pip3 install flask
-RUN pip3 install flask-restx
-RUN pip3 install py-eureka-client
-
-EXPOSE 5000
-ENTRYPOINT [ "flask"]
-CMD [ "run", "--host", "0.0.0.0" ]
+# EXPOSE 5000
+# ENTRYPOINT [ "flask"]
+# CMD [ "run", "--host", "0.0.0.0" ]
 
 # FROM pytorch/pytorch:latest
 
