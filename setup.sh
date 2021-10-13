@@ -1,5 +1,7 @@
 #!/bin/bash
 sudo apt update && sudo apt upgrade -Y
+apt-get install -y python3 
+apt-get install -y python3-pip
 apt-get install -y libmysqlclient-dev
 # pip install torch
 # pip install pytorch-lightning
