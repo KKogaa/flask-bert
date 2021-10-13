@@ -37,3 +37,12 @@
 2021-10-04 19:56:54,573 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 2021-10-04 19:57:10,141 INFO werkzeug Thread-1 : 127.0.0.1 - - [04/Oct/2021 19:57:10] "[37mPOST /categorizar HTTP/1.1[0m" 200 -
 2021-10-04 19:57:23,781 INFO werkzeug Thread-2 : 127.0.0.1 - - [04/Oct/2021 19:57:23] "[37mPOST /categorizar HTTP/1.1[0m" 200 -
+2021-10-13 01:45:09,809 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-10-13 01:45:24,534 INFO werkzeug Thread-2 : 127.0.0.1 - - [13/Oct/2021 01:45:24] "GET /categorizar HTTP/1.1" 200 -
+2021-10-13 01:52:50,016 INFO waitress MainThread : Serving on http://0.0.0.0:8080
+2021-10-13 01:54:54,073 INFO waitress MainThread : Serving on http://0.0.0.0:5000
+2021-10-13 01:57:12,980 INFO waitress MainThread : Serving on http://127.0.0.1:5000
+2021-10-13 02:23:53,464 INFO werkzeug MainThread :  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-10-13 02:23:53,509 INFO werkzeug MainThread :  * Restarting with stat
+2021-10-13 02:24:44,795 WARNING werkzeug MainThread :  * Debugger is active!
+2021-10-13 02:24:44,840 INFO werkzeug MainThread :  * Debugger PIN: 470-140-294
