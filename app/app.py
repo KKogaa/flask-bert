@@ -144,7 +144,7 @@ def similarity(intencion, text):
     # find index of max prob
     max_index = None
     max_prob = None
-    THRESHOLD = 0.5
+    THRESHOLD = 0.7
 
     if similarity_matrix[0].size != 0:
         max_index = np.where(similarity_matrix[0] == np.amax(
@@ -155,8 +155,6 @@ def similarity(intencion, text):
         return ('Disculpa por no poder responder tu pregunta he contactado a alguien para ayudarte', str(max_prob))
 
     return (datas[max_index].respuesta, str(max_prob))
-
-    # print('hi')
 
 
 @api.route('/chatbot')
