@@ -125,13 +125,12 @@ class Pregunta_Frecuente(Base):
     __table__ = Base.metadata.tables['pregunta_frecuente']
 
 
-def similarity(intencion, text):
+def similarity(db_session, intencion, text):
     faqs = []
     datas = []
     for item in db_session.query(Pregunta_Frecuente):
         faqs.append(item.pregunta)
         datas.append(item)
-    db_session
 
     # compute embeddings
     text_result = embed(text)
@@ -177,7 +176,7 @@ class Chatbot(Resource):
 
         # search tensorflow similarity
         response['rpta'], response['probabilidad_preg'] = similarity(
-            response['intencion'], text)
+            db_session, response['intencion'], text)
 
         db_session.close()
 
