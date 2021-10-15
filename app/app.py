@@ -42,7 +42,6 @@ engine = create_engine(
 Base = declarative_base()
 Base.metadata.reflect(engine)
 
-db_session = scoped_session(sessionmaker(bind=engine))
 
 print('App initialized')
 
@@ -132,6 +131,7 @@ def similarity(intencion, text):
     for item in db_session.query(Pregunta_Frecuente):
         faqs.append(item.pregunta)
         datas.append(item)
+    db_session
 
     # compute embeddings
     text_result = embed(text)
@@ -162,6 +162,8 @@ class Chatbot(Resource):
 
     @api.doc(parser=parser)
     def post(self):
+        db_session = scoped_session(sessionmaker(bind=engine))
+
         text = parser.parse_args()['data']
         response = predictor.predict(text)
 
@@ -176,6 +178,8 @@ class Chatbot(Resource):
         # search tensorflow similarity
         response['rpta'], response['probabilidad_preg'] = similarity(
             response['intencion'], text)
+
+        db_session.close()
 
         return response
 
