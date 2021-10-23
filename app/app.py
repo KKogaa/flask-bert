@@ -26,13 +26,13 @@ import json
 import logging
 
 
-import py_eureka_client.eureka_client as eureka_client
-eureka_client.init(eureka_server="http://ec2-44-199-108-119.compute-1.amazonaws.com:8761/eureka/",
-                   eureka_protocol="http",
-                   # eureka_context="/eureka/v2",
-                   app_name="chatbot-service",
-                   instance_ip="34.207.149.185",
-                   instance_port=5000)
+# import py_eureka_client.eureka_client as eureka_client
+# eureka_client.init(eureka_server="http://ec2-44-199-108-119.compute-1.amazonaws.com:8761/eureka/",
+#                    eureka_protocol="http",
+#                    # eureka_context="/eureka/v2",
+#                    app_name="chatbot-service",
+#                    instance_ip="34.207.149.185",
+#                    instance_port=5000)
 
 app = Flask(__name__)
 api = Api(app)
@@ -74,7 +74,8 @@ class PythonPredictor:
     def predict(self, payload):
 
         response = {'intencion': None, 'probabilidad_int': None,
-                    'rpta': None, 'probabilidad_preg': None}
+                    'rpta': None, 'probabilidad_preg': None,
+                    'contactar': False}
 
         test_comment = payload
         encoding = self.tokenizer.encode_plus(
@@ -151,9 +152,9 @@ def similarity(db_session, intencion, text):
         max_prob = similarity_matrix[0][max_index]
 
     if max_index == None or max_prob < THRESHOLD:
-        return ('Disculpa por no poder responder tu pregunta he contactado a alguien para ayudarte', str(max_prob))
+        return ('Disculpa por no poder responder tu pregunta he contactado a alguien para ayudarte', str(max_prob), True)
 
-    return (datas[max_index].respuesta, str(max_prob))
+    return (datas[max_index].respuesta, str(max_prob), False)
 
 
 @api.route('/chatbot')
@@ -172,10 +173,11 @@ class Chatbot(Resource):
             response['intencion'] = 'int_ninguna'
             response['probabilidad_preg'] = '0.0'
             response['rpta'] = 'Disculpa podrias refrasear la pregunta?'
+            db_session.close()
             return response
 
         # search tensorflow similarity
-        response['rpta'], response['probabilidad_preg'] = similarity(
+        response['rpta'], response['probabilidad_preg'], response['contactar'] = similarity(
             db_session, response['intencion'], text)
 
         db_session.close()
