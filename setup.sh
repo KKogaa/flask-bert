@@ -3,6 +3,7 @@ sudo apt update && sudo apt upgrade -Y
 sudo apt-get install -y python3 
 sudo apt-get install -y python3-pip
 sudo apt-get install -y libmysqlclient-dev
+sudo apt install python3-flask
 
 cd app
 pip install gdown
