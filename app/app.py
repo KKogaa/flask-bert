@@ -26,13 +26,13 @@ import json
 import logging
 
 
-# import py_eureka_client.eureka_client as eureka_client
-# eureka_client.init(eureka_server="http://ec2-44-199-108-119.compute-1.amazonaws.com:8761/eureka/",
-#                    eureka_protocol="http",
-#                    # eureka_context="/eureka/v2",
-#                    app_name="chatbot-service",
-#                    instance_ip="34.207.149.185",
-#                    instance_port=5000)
+import py_eureka_client.eureka_client as eureka_client
+eureka_client.init(eureka_server="http://ec2-34-229-202-227.compute-1.amazonaws.com:8761/eureka/",
+                   eureka_protocol="http",
+                   # eureka_context="/eureka/v2",
+                   app_name="chatbot-service",
+                   instance_ip="54.221.118.45",
+                   instance_port=5000)
 
 app = Flask(__name__)
 api = Api(app)
