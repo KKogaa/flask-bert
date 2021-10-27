@@ -45,17 +45,19 @@ Base.metadata.reflect(engine)
 
 print('App initialized')
 
-categorias = ['int_boleta',
-              'int_craest',
-              'int_economia',
-              'int_eeggcc',
-              'int_eventos',
-              'int_matricula',
-              'int_reclamo_notas',
-              'int_retiro',
-              'int_salud',
-              'int_transferencia',
-              'int_tutores']
+categorias = ['cat_craest',
+              'cat_economia',
+              'cat_eeggcc',
+              'cat_eventos',
+              'cat_matricula',
+              'cat_reclamo_notas',
+              'cat_retiro',
+              'cat_salud',
+              'cat_transferencia',
+              'cat_tutores',
+              'intent_chau',
+              'intent_gracias',
+              'intent_hola']
 
 
 class PythonPredictor:
@@ -94,7 +96,6 @@ class PythonPredictor:
         best_label = None
         best_prediction = 0.0
         for label, prediction in zip(categorias, test_prediction):
-            # print(f"{label}: {prediction}")
             if prediction > best_prediction:
                 best_label = label
                 best_prediction = prediction
@@ -157,6 +158,13 @@ def similarity(db_session, intencion, text):
     return (datas[max_index].respuesta, str(max_prob), False)
 
 
+def matches_basic_intent(response):
+    basic_intents = {'intent_hola': 'Hola soy Croccy Bot', 'intent_chau': 'Adios fue un gusto ayudarte',
+                     'intent_gracias': 'Para nada fue un gusto poder ayudarte'}
+    basic_response = basic_intents.get(response['intencion'], None)
+    return basic_response
+
+
 @api.route('/chatbot')
 class Chatbot(Resource):
 
@@ -168,11 +176,20 @@ class Chatbot(Resource):
         response = predictor.predict(text)
 
         # if no match return no intention
-        # TODO move threshhold logic inside of function
+        # TODO move threshhold logic inside of function prediction
         if float(response['probabilidad_int']) < 0.5:
             response['intencion'] = 'int_ninguna'
             response['probabilidad_preg'] = '0.0'
             response['rpta'] = 'Disculpa podrias refrasear la pregunta?'
+            db_session.close()
+            return response
+
+        # if it matches one of basic intents
+        # TODO deprecate basic intents for hidden intents in faq db
+        basic_response = matches_basic_intent(response)
+        if basic_response is not None:
+            response['rpta'] = basic_response
+            response['probabilidad_preg'] = '0.0'
             db_session.close()
             return response
 
@@ -186,25 +203,6 @@ class Chatbot(Resource):
 
     def get(self):
         return {'categorias': categorias}
-
-
-# @api.route('/chatbot')
-# class Chatbot(Resource):
-#     # @api.doc(parser=parser)
-#     def post(self):
-#         # text = parser.parse_args()['data']
-#         # response = predictor.predict(text)
-#         # return response
-#         return None
-
-#     def get(self):
-#         # return {'categorias': categorias}
-#         for item in db_session.query(Pregunta_Frecuente).filter(Pregunta_Frecuente.id_pregunta_frecuente == 1):
-#             print(item.id_pregunta_frecuente)
-#         #     print(item)
-#         # for item in db_session.query(Pregunta_Frecuente):
-#         #     print(item.id_pregunta_frecuente)
-#         return None
 
 
 if __name__ == '__main__':
