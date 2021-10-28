@@ -25,11 +25,9 @@ from waitress import serve
 import json
 import logging
 
-
 import py_eureka_client.eureka_client as eureka_client
 eureka_client.init(eureka_server="http://ec2-34-229-202-227.compute-1.amazonaws.com:8761/eureka/",
                    eureka_protocol="http",
-                   # eureka_context="/eureka/v2",
                    app_name="chatbot-service",
                    instance_ip="54.221.118.45",
                    instance_port=5000)
@@ -43,21 +41,26 @@ Base = declarative_base()
 Base.metadata.reflect(engine)
 
 
+class Pregunta_Frecuente(Base):
+    __table__ = Base.metadata.tables['pregunta_frecuente']
+
+
+class Categoria_Consulta(Base):
+    __table__ = Base.metadata.tables['categoria_consulta']
+
+
 print('App initialized')
 
-categorias = ['cat_craest',
-              'cat_economia',
-              'cat_eeggcc',
-              'cat_eventos',
-              'cat_matricula',
-              'cat_reclamo_notas',
-              'cat_retiro',
-              'cat_salud',
-              'cat_transferencia',
-              'cat_tutores',
-              'intent_chau',
+db_session = scoped_session(sessionmaker(bind=engine))
+categorias_db = [
+    item.descripcion for item in db_session.query(Categoria_Consulta)]
+db_session.close()
+
+categorias = ['intent_chau',
               'intent_gracias',
               'intent_hola']
+
+categorias = categorias_db + categorias
 
 
 class PythonPredictor:
@@ -123,10 +126,6 @@ parser = reqparse.RequestParser()
 parser.add_argument('data', type=str, help='variable 1')
 
 
-class Pregunta_Frecuente(Base):
-    __table__ = Base.metadata.tables['pregunta_frecuente']
-
-
 def similarity(db_session, intencion, text):
     faqs = []
     datas = []
@@ -159,7 +158,7 @@ def similarity(db_session, intencion, text):
 
 
 def matches_basic_intent(response):
-    basic_intents = {'intent_hola': 'Hola soy Croccy Bot', 'intent_chau': 'Adios fue un gusto ayudarte',
+    basic_intents = {'intent_hola': 'Hola soy Croky Bot, como te puedo asistir?', 'intent_chau': 'Chau fue un gusto ayudarte!!',
                      'intent_gracias': 'Para nada fue un gusto poder ayudarte'}
     basic_response = basic_intents.get(response['intencion'], None)
     return basic_response
