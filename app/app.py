@@ -40,6 +40,7 @@ engine = create_engine(
 Base = declarative_base()
 Base.metadata.reflect(engine)
 
+
 class Pregunta_Frecuente(Base):
     __table__ = Base.metadata.tables['pregunta_frecuente']
 
@@ -54,6 +55,8 @@ db_session = scoped_session(sessionmaker(bind=engine))
 categorias_db = [
     item.descripcion for item in db_session.query(Categoria_Consulta)]
 db_session.close()
+
+print('SIZE OF CAT MUST BE 10' + len(categorias_db))
 
 categorias = ['intent_chau',
               'intent_gracias',
