@@ -64,6 +64,8 @@ categorias = ['intent_chau',
 
 categorias = categorias_db + categorias
 
+print('FINAL :' + str(len(categorias)))
+
 
 class PythonPredictor:
     def __init__(self):
