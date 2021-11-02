@@ -56,7 +56,7 @@ categorias_db = [
     item.descripcion for item in db_session.query(Categoria_Consulta)]
 db_session.close()
 
-print('SIZE OF CAT MUST BE 10 :' + str(len(categorias_db)))
+print('SIZE OF CAT MUST BE 11 :' + str(len(categorias_db)))
 
 categorias = ['intent_chau',
               'intent_gracias',
