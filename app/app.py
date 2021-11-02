@@ -26,7 +26,7 @@ import json
 import logging
 
 import py_eureka_client.eureka_client as eureka_client
-eureka_client.init(eureka_server="http://ec2-34-229-202-227.compute-1.amazonaws.com:8761/eureka/",
+eureka_client.init(eureka_server="http://ec2-50-16-212-46.compute-1.amazonaws.com:8761/eureka/",
                    eureka_protocol="http",
                    app_name="chatbot-service",
                    instance_ip="54.221.118.45",
@@ -36,10 +36,9 @@ app = Flask(__name__)
 api = Api(app)
 
 engine = create_engine(
-    'mysql://admin:HYhmiYxkwD5xMAs@db-maynardcode.cbjharuwcybj.us-east-1.rds.amazonaws.com:3306/maynardcode', echo=False)
+    'mysql://admin:pucppassword123@db-maynardcode.cm7jvq9vp9i9.us-east-1.rds.amazonaws.com:3306/maynardcode', echo=False)
 Base = declarative_base()
 Base.metadata.reflect(engine)
-
 
 class Pregunta_Frecuente(Base):
     __table__ = Base.metadata.tables['pregunta_frecuente']
