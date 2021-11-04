@@ -134,7 +134,7 @@ def similarity(db_session, intencion, text):
     faqs = []
     datas = []
     for item in db_session.query(Pregunta_Frecuente):
-        faqs.append(item.pregunta)
+        faqs.append(item.pregunta_parse)
         datas.append(item)
 
     # compute embeddings
