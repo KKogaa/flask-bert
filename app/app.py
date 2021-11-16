@@ -29,7 +29,7 @@ import py_eureka_client.eureka_client as eureka_client
 eureka_client.init(eureka_server="http://ec2-50-16-212-46.compute-1.amazonaws.com:8761/eureka/",
                    eureka_protocol="http",
                    app_name="chatbot-service",
-                   instance_ip="54.82.106.189",
+                   instance_ip="18.205.245.187",
                    instance_port=5000)
 
 app = Flask(__name__)
