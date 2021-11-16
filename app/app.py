@@ -20,7 +20,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker, Query
-from waitress import serve
+# from waitress import serve
 
 import json
 import logging
@@ -143,7 +143,6 @@ def similarity(db_session, intencion, text):
 
     # compute similarity matrix
     similarity_matrix = np.inner(text_result, faqs_results)
-    print(similarity_matrix)
 
     # find index of max prob
     max_index = None
