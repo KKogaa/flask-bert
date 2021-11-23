@@ -23,19 +23,24 @@ from sqlalchemy.orm import scoped_session, sessionmaker, Query
 
 import json
 import logging
+import os
 
 import py_eureka_client.eureka_client as eureka_client
-eureka_client.init(eureka_server="http://ec2-50-16-212-46.compute-1.amazonaws.com:8761/eureka/",
+eureka_client.init(eureka_server=os.environ['EUREKA_URL'],
                    eureka_protocol="http",
                    app_name="chatbot-service",
-                   instance_ip="54.163.36.214",
-                   instance_port=5000)
+                   instance_ip=os.environ['HOST_PUBLIC_IP'],
+                   instance_port=os.environ['PORT'])
 
 app = Flask(__name__)
 api = Api(app)
 
+db_user = os.environ['DB_USER']
+db_password = os.environ['DB_PASSWORD']
+db_url = os.environ['DB_URL']
+
 engine = create_engine(
-    'mysql://admin:pucppassword123@db-maynardcode.cm7jvq9vp9i9.us-east-1.rds.amazonaws.com:3306/maynardcode', echo=False)
+    f'mysql://{db_user}:{db_password}@{db_url}', echo=False)
 Base = declarative_base()
 Base.metadata.reflect(engine)
 
@@ -47,8 +52,6 @@ class Pregunta_Frecuente(Base):
 class Categoria_Consulta(Base):
     __table__ = Base.metadata.tables['categoria_consulta']
 
-
-print('App initialized')
 
 db_session = scoped_session(sessionmaker(bind=engine))
 categorias_db = [
@@ -62,8 +65,6 @@ categorias = ['intent_chau',
               'intent_hola']
 
 categorias = categorias_db + categorias
-
-print('FINAL :' + str(len(categorias)))
 
 
 class PythonPredictor:
@@ -207,4 +208,4 @@ class Chatbot(Resource):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=os.environ['PORT'])
