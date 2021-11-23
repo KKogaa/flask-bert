@@ -20,7 +20,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker, Query
-# from waitress import serve
 
 import json
 import logging
@@ -209,4 +208,3 @@ class Chatbot(Resource):
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-    # serve(app, host='127.0.0.1', port=5000)
