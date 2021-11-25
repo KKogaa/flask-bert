@@ -30,7 +30,7 @@ eureka_client.init(eureka_server=os.environ['EUREKA_URL'],
                    eureka_protocol="http",
                    app_name="chatbot-service",
                    instance_ip=os.environ['HOST_PUBLIC_IP'],
-                   instance_port=os.environ['PORT'])
+                   instance_port=5000)
 
 app = Flask(__name__)
 api = Api(app)
@@ -208,4 +208,4 @@ class Chatbot(Resource):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=os.environ['PORT'])
+    app.run(debug=True, port=5000)
