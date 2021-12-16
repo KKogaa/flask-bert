@@ -15,6 +15,7 @@ from IntentTagger import IntentTagger
 import tensorflow_text
 import tensorflow_hub as hub
 import numpy as np
+import random
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
@@ -161,10 +162,29 @@ def similarity(db_session, intencion, text):
 
 
 def matches_basic_intent(response):
-    basic_intents = {'intent_hola': 'Hola soy Croky Bot, como te puedo asistir?', 'intent_chau': 'Chau fue un gusto ayudarte!!',
-                     'intent_gracias': 'Para nada fue un gusto poder ayudarte'}
-    basic_response = basic_intents.get(response['intencion'], None)
+    basic_intents = {'intent_hola': ['Hola soy Croky Bot ¿Cómo te puedo asistir?', 'Hola soy Croky Bot ¿En que te puedo ayudar?', 'Hola soy Croky Bot, listo para ayudarte'],
+                     'intent_chau': ['Chau fue un gusto ayudarte!!', 'Adios, espero haberte ayudado', 'Chau, espero haberte ayudado'],
+                     'intent_gracias': ['Para nada fue un gusto poder ayudarte', 'Fue un placer poder ayudarte', 'Con mucho gusto! Si tienes alguna duda estoy listo para ayudarte']}
+    basic_response = random.choice(basic_intents.get(response['intencion']))
     return basic_response
+
+
+def get_random_faqs(db_session, num_faqs):
+    faqs = []
+    for item in db_session.query(Pregunta_Frecuente):
+        faqs.append(item.pregunta)
+
+    results = []
+    for _ in range(num_faqs):
+        result = random.choice(faqs)
+        faqs.remove(result)
+        results.append(random.choice(faqs))
+
+    return results
+
+
+def convert_list_html(list_text):
+    return '<ul>' + ''.join(['<li>' + item + '</li>' for item in list_text]) + '</ul>'
 
 
 @api.route('/chatbot')
@@ -182,7 +202,8 @@ class Chatbot(Resource):
         if float(response['probabilidad_int']) < 0.5:
             response['intencion'] = 'int_ninguna'
             response['probabilidad_preg'] = '0.0'
-            response['rpta'] = 'Disculpa podrias refrasear la pregunta?'
+            response['rpta'] = 'Disculpa no te entendi ¿Podrías reformular la pregunta? Puedes intentar con las siguientes preguntas: <br>' + \
+                convert_list_html(get_random_faqs(db_session, 3))
             db_session.close()
             return response
 
