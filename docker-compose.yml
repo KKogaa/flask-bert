@@ -1,8 +1,8 @@
-version: "3.9"
+version: "3.3"
 services:
   web:
     ports:
-      - "5000:5080"
+      - "5000:5000"
     image: "kkogaa/chatbot-service"
     environment:
       - PORT=5000

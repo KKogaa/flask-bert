@@ -148,7 +148,7 @@ def similarity(db_session, intencion, text):
     # find index of max prob
     max_index = None
     max_prob = None
-    THRESHOLD = 0.7
+    THRESHOLD = 0.6
 
     if similarity_matrix[0].size != 0:
         max_index = np.where(similarity_matrix[0] == np.amax(
@@ -165,7 +165,11 @@ def matches_basic_intent(response):
     basic_intents = {'intent_hola': ['Hola soy Croky Bot ¿Cómo te puedo asistir?', 'Hola soy Croky Bot ¿En que te puedo ayudar?', 'Hola soy Croky Bot, listo para ayudarte'],
                      'intent_chau': ['Chau fue un gusto ayudarte!!', 'Adios, espero haberte ayudado', 'Chau, espero haberte ayudado'],
                      'intent_gracias': ['Para nada fue un gusto poder ayudarte', 'Fue un placer poder ayudarte', 'Con mucho gusto! Si tienes alguna duda estoy listo para ayudarte']}
-    basic_response = random.choice(basic_intents.get(response['intencion']))
+    basic_response = basic_intents.get(response['intencion'], None)
+
+    if basic_response is not None:
+        basic_response = random.choice(basic_response)
+
     return basic_response
 
 
